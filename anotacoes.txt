@@ -1,0 +1,64 @@
+Anotações Testes unitários:
+
+Testes unitários: testamos a menor porção de código possível, ou seja, métodos e classes. Nós supomos que a integração aconteceu, mas não usamos NADA além da classe de teste. Se o projeto tem um banco de dados, nós SUPOMOS que ele foi integrado e que está funcionamos, mas NÃO TESTAMOS ELE. Testar ele seria um teste de INTEGRAÇÃO.
+
+Testes de integração: testam a comunicação entre diferentes componentes do projeto, sejam banco de dados, front end com backend, APIs, etc.
+
+Teste End-To-End ou de Aplicação: Um teste que testa toda a aplicação. É muito caro de fazer, mas traz muito valor ao projeto.
+
+Teste de carga: é um teste feito para ver o comportamento do projeto quando muitas requisições acontecem.
+
+Teste de segurança: é um teste feito com o objetivo de danificar a integridade do projeto, simulando ataques.
+
+Para fazer um teste unitário, precisamos da classe que será testada. E dos valores esperados desses métodos.
+
+Mock / double -> Se lembra que SUPOMOS que os componentes para funcionamento da classe estão implementados? Essa suposição toma forma por meio de mocks / doubles, que simulam a chamada e um pouco da funcionalidade desses componentes.
+
+
+--------- ARRANGE, ACT, ASSERT (AAA TESTS) ---------
+
+Arrange: Você prepara tudo o que é necessário para o funcionamento do teste
+
+Act: Você executa o método para obter seus valores
+
+Assert: Você compara o valor retornado pelo método com o valor esperado e retorna se deu certo. 
+
+
+--------- JUNIT ---------
+* Framework para testes unitários em Java, ele é gratuito e disponível para várias IDEs
+
+O Junit pega a classe de teste e os métodos com a annotation @Test, no seu runner instancia um objeto do tipo classe de teste seu, executa os métodos com @Test e registra os resultados no Assert. É o assert que é exibido para você ao final da execução do programa de testes de Junit.
+
+OS MÉTODOS DE TESTE PRECISAM SER PUBLIC E VOID
+
+	ANNOTATIONS
+	
+Nada -> Junit ignora o método de teste 
+@Test -> é o que permite o Junit executar o método de teste
+@Ignore -> O Junit ignora o método de teste 
+
+
+	FIXTURES
+	
+Fixtures são códigos que serão executados em partes estratégicas do teste para diminuir repetição de código, temos as seguintes annotations:
+
+@BeforeClass -> executa uma vez antes da classe ser testada
+@Before -> executa uma vez antes de cada método testado
+@After -> executa uma vez após cada método ser testado
+@AfterClass -> Executa uma vez depois de toda a classe ser testada
+
+
+	EXCEPTIONS
+	
+Quando você quer que um método retorne uma Exception, você no método de teste irá colocar na annotation:
+
+@Test(ExceptionEsperada.ClassDaException)
+
+E executar o método normalmente
+
+
+	TIMEOUT
+	
+Se você quiser que seu método executa dentro de uma janela de tempo, use:
+
+@Test(timeout = x) -> x está em millisegundos. Se o método levar mais do que x milisegundos, uma falha ocorrerá.
